@@ -13,10 +13,12 @@ class Utils {
 	static $consonants  = "BCDFGHJKLMNPQRSTVWXYZ";
 	static $vowels      = "AEIOU";
 	static $hex         = "0123456789ABCDEF";
+	static $uuidV4 	    = "89AB";
 	static $lettersLen;
 	static $consonantsLen;
 	static $vowelsLen;
 	static $hexLen;
+	static $uuidV4Len;
 
 	static $lipsumMemoized = false;
 	static $lipsum;
@@ -194,6 +196,7 @@ class Utils {
 			self::$consonantsLen = strlen(self::$consonants);
 			self::$vowelsLen     = strlen(self::$vowels);
 			self::$hexLen        = strlen(self::$hex);
+			self::$uuidV4Len     = strlen(self::$uuidV4);
 			self::$charLengthMemoized = true;
 		}
 
@@ -246,6 +249,15 @@ class Utils {
 
 				case "H":
 					$new_str .= self::$hex[mt_rand(0, self::$hexLen-1)];
+					break;
+				
+				case "h":
+					$new_str .= strtolower(self::$hex[mt_rand(0, self::$hexLen-1)]);
+					break;
+				
+				// UUID v4
+				case "f":
+					$new_str .= strtolower(self::$uuidV4[mt_rand(0, self::$uuidV4Len-1)]);
 					break;
 
 				default:
